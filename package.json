@@ -4,7 +4,8 @@
   "description": "A vanilla js library for creating stylish alerts, prompts and confirms.",
   "main": "dist/js/attention.js",
   "scripts": {
-    "dev": "rollup -c rollup.config.js -w"
+    "dev": "rollup -c rollup.config.js -w",
+    "style": "node-sass src/sass/index.scss dist/attention.css -w  --output-style=compressed"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "rollup-plugin-babel": "^4.3.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-uglify": "^6.0.1"
+  },
+  "dependencies": {
+    "node-sass": "^4.11.0"
   }
 }

@@ -115,6 +115,47 @@
     return el;
   };
 
+  var fadeIn = function fadeIn(element, callback) {
+    var counter = 0;
+    var step = 4;
+
+    var run = function run() {
+      if (counter >= 100) {
+        window.cancelAnimationFrame(run);
+
+        if (callback) {
+          callback(element);
+        }
+      } else {
+        counter += step;
+        element.style.opacity = (counter / 100).toString();
+        window.requestAnimationFrame(run);
+      }
+    };
+
+    window.requestAnimationFrame(run);
+  };
+  var fadeOut = function fadeOut(element, callback) {
+    var counter = 100;
+    var step = 4;
+
+    var run = function run() {
+      if (counter <= 0) {
+        window.cancelAnimationFrame(run);
+
+        if (callback) {
+          callback(element);
+        }
+      } else {
+        counter -= step;
+        element.style.opacity = (counter / 100).toString();
+        window.requestAnimationFrame(run);
+      }
+    };
+
+    window.requestAnimationFrame(run);
+  };
+
   var Component =
   /*#__PURE__*/
   function () {
@@ -149,19 +190,45 @@
       key: "render",
       value: function render() {
         var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
+
+        if (this.options.beforeRender) {
+          this.options.beforeRender(this);
+        }
+
         container.appendChild(this.template);
+
+        if (this.options.afterRender) {
+          this.options.afterRender(this);
+        }
+
+        if (this.animation === 'fade') {
+          fadeIn(this.template);
+        }
+      }
+    }, {
+      key: "destroy",
+      value: function destroy() {
+        this.container.parentElement.removeChild(this.container);
+
+        if (this.options.afterClose) {
+          this.options.beforeClose(this);
+        }
       }
     }, {
       key: "close",
       value: function close() {
-        if (options.beforeClose) {
-          options.beforeClose(this);
+        var _this = this;
+
+        if (this.options.beforeClose) {
+          this.options.beforeClose(this);
         }
 
-        this.container.parentElement.removeChild(this.container);
-
-        if (options.afterClose) {
-          options.beforeClose(this);
+        if (!this.animation) {
+          this.destroy();
+        } else if (this.animation === 'fade') {
+          fadeOut(this.container, function () {
+            _this.destroy();
+          });
         }
       }
     }]);
@@ -194,12 +261,6 @@
       value: function renderTemplate() {
         var _this2 = this;
 
-        this.container = h('div', {
-          class: 'attention-alert'
-        });
-        this.port = h('div', {
-          class: 'inner'
-        });
         var close$$1 = h('div', {
           class: 'close',
           click: function click() {
@@ -207,12 +268,31 @@
           }
         });
         close$$1.innerHTML = close;
-        this.port.appendChild(close$$1);
-        var content = h('div', {
+        this.port = h('div', {
+          class: 'port'
+        });
+        this.port.appendChild(h('p', {
+          class: 'title'
+        }, [this.title]));
+        this.port.appendChild(h('p', {
           class: 'content'
-        }, [h('p', null, [this.title]), h('p', null, [this.content])]);
-        this.port.appendChild(content);
-        this.container.appendChild(this.port);
+        }, [this.content]));
+        var style;
+
+        if (this.animation === 'fade') {
+          style = 'opacity:0;';
+        } else {
+          style = '';
+        }
+
+        this.container = h('div', {
+          class: 'attention-alert attention-component',
+          style: style
+        }, [h('div', {
+          class: 'inner'
+        }, [h('div', {
+          class: 'content'
+        }, [close$$1, this.port])])]);
         return this.container;
       }
     }]);
@@ -220,7 +300,73 @@
     return Alert;
   }(Component);
 
+  var Prompt =
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(Prompt, _Component);
+
+    function Prompt(options) {
+      var _this;
+
+      _classCallCheck(this, Prompt);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Prompt).call(this, options));
+      _this.template = _this.renderTemplate();
+
+      _this.render();
+
+      return _this;
+    }
+
+    _createClass(Prompt, [{
+      key: "renderTemplate",
+      value: function renderTemplate() {
+        var _this2 = this;
+
+        var close$$1 = h('div', {
+          class: 'close',
+          click: function click() {
+            _this2.close();
+          }
+        });
+        close$$1.innerHTML = close;
+        this.port = h('div', {
+          class: 'port'
+        });
+        this.port.appendChild(h('p', {
+          class: 'title'
+        }, [this.title]));
+        this.port.appendChild(h('p', {
+          class: 'content'
+        }, [this.content]));
+        var style;
+
+        if (this.animation === 'fade') {
+          style = 'opacity:0;';
+        } else {
+          style = '';
+        }
+
+        this.container = h('div', {
+          class: 'attention-alert attention-component',
+          style: style
+        }, [h('div', {
+          class: 'inner'
+        }, [h('div', {
+          class: 'content'
+        }, [close$$1, this.port])])]);
+        return this.container;
+      }
+    }]);
+
+    return Prompt;
+  }(Component);
+
+  var version = '0.1.0';
+
   exports.Alert = Alert;
+  exports.Prompt = Prompt;
+  exports.version = version;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

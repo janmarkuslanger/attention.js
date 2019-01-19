@@ -2,7 +2,7 @@ import { h } from './h';
 import { Component } from './component';
 import { close as closeIcon } from './constants';
 
-export class Alert extends Component {
+export class Prompt extends Component {
 
     constructor(options) {
         super(options);

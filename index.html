@@ -3,15 +3,27 @@
     <head>
         <meta charset="utf-8">
         <title>attention.js - Demo</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+        <link href="dist/attention.css" rel="stylesheet">
+        <style>
+
+        html {
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        </style>
     </head>
     <body>
 
         <script src="dist/attention.js"></script>
 
         <script>
-            new Attention.Alert({
+            new Attention.Prompt({
                 title: 'This is a Title',
-                content: 'This is the content'
+                content: 'This is the content',
+                onSend(comp, val) {
+                    console.log(val)
+                }
             })
         </script>
 

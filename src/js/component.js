@@ -1,4 +1,5 @@
 import { isString } from './is';
+import { fadeIn, fadeOut } from './animations';
 
 export class Component {
     constructor(options) {
@@ -28,18 +29,44 @@ export class Component {
     }
 
     render(container = document.body) {
+        if (this.options.beforeRender) {
+            this.options.beforeRender(this);
+        }
+
         container.appendChild(this.template);
+
+        if (this.options.afterRender) {
+            this.options.afterRender(this);
+        }
+
+        if (this.animation === 'fade') {
+            fadeIn(this.template);
+
+        }
+    }
+
+    destroy() {
+        this.container.parentElement.removeChild(this.container);
+
+        if (this.options.afterClose) {
+            this.options.beforeClose(this);
+        }
     }
 
     close() {
 
-        if (options.beforeClose) {
-            options.beforeClose(this);
+        if (this.options.beforeClose) {
+            this.options.beforeClose(this);
         }
-        this.container.parentElement.removeChild(this.container);
-        if (options.afterClose) {
-            options.beforeClose(this);
+
+        if (!this.animation) {
+            this.destroy();
+        } else if (this.animation === 'fade') {
+            fadeOut(this.container, () => {
+                this.destroy();
+            })
         }
+
     }
 
 }
