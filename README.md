@@ -74,10 +74,10 @@ test
 When creating a new Object of an Alert, Prompt or Confirm, it is needed to pass an object.
 This object has a few options that you can change.
 
-key | description | type | mandatory
----- | -----------| ---- | -----
-title | Title | string | true
-content | Content | string | true
+key | description | type | mandatory|
+---- | -----------| ---- | ----- |
+title | Title | string | true |
+content | Content | string | true |
 
 
 ## Methods
@@ -86,24 +86,24 @@ Attention offers a lot of lifecycle methods. These methods are giving the oportu
 
 Here is a list of available methods. These methods are available in every component.
 
-name | description
----- | ----------
-beforeRender | fires before rendering a component
-afterRender | fires after rendering a component
-beforeClose | fires before closing a component
-afterClose | fires after closing a component
+name | description |
+---- | ----------|
+beforeRender | fires before rendering a component |
+afterRender | fires after rendering a component |
+beforeClose | fires before closing a component |
+afterClose | fires after closing a component |
 
 Furthermore we have methods which are only available in some methods.
 
 ### Methods - Confirm
 
-name | description
------ | ---------
-onAccept | fires when user has accepted
-onCancel | fires when user has canceled
+name | description |
+----- | --------- |
+onAccept | fires when user has accepted |
+onCancel | fires when user has canceled |
 
 ### Methods - Prompt
 
-name | description
------ | ---------
-onSend | fires when the user has entered the input
+name | description |
+----- | --------- |
+onSend | fires when the user has entered the input |
