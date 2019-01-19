@@ -2,6 +2,12 @@
 
 A vanilla js library for creating stylish alerts, prompts and confirms.
 
+## Install
+ 
+Install attention.js is quit easy.
+
+### 
+
 ## Usage
 
 ### Alert
