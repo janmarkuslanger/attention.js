@@ -118,18 +118,19 @@
   var Component =
   /*#__PURE__*/
   function () {
-    function Component(title, content, options) {
+    function Component(options) {
       _classCallCheck(this, Component);
 
-      if (isString(title)) {
-        this.title = title;
-      }
-
-      if (isString(content)) {
-        this.content = content;
-      }
-
       this.options = options;
+
+      if (isString(options.title)) {
+        this.title = options.title;
+      }
+
+      if (isString(options.content)) {
+        this.content = options.content;
+      }
+
       this.container = null;
       this.port = null;
     }
@@ -140,22 +141,29 @@
         var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
         container.appendChild(this.template);
       }
+    }, {
+      key: "close",
+      value: function close() {
+        this.container.parentElement.removeChild(this.container);
+      }
     }]);
 
     return Component;
   }();
+
+  var close = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\"/><path d=\"M0 0h24v24H0z\" fill=\"none\"/></svg>"; // Thanks Google!
 
   var Alert =
   /*#__PURE__*/
   function (_Component) {
     _inherits(Alert, _Component);
 
-    function Alert(title, content, options) {
+    function Alert(options) {
       var _this;
 
       _classCallCheck(this, Alert);
 
-      _this = _possibleConstructorReturn(this, _getPrototypeOf(Alert).call(this, title, content, options));
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Alert).call(this, options));
       _this.template = _this.renderTemplate();
 
       _this.render();
@@ -166,12 +174,21 @@
     _createClass(Alert, [{
       key: "renderTemplate",
       value: function renderTemplate() {
+        var _this2 = this;
+
         this.container = h('div', {
           class: 'attention-alert'
         });
         this.port = h('div', {
           class: 'inner'
         });
+        var close$$1 = h('div', {
+          class: 'close',
+          click: function click() {
+            _this2.close();
+          }
+        });
+        close$$1.innerHTML = close;
         var content = h('div', {
           class: 'content'
         }, [h('p', null, [this.title]), h('p', null, [this.content])]);

@@ -9,7 +9,7 @@ import { uglify } from "rollup-plugin-uglify";
 const name = 'Attention';
 
 export default {
-    input: 'src/index.js',
+    input: 'src/js/index.js',
     output: {
         file: `dist/${name.toLowerCase()}.js`,
         format: 'umd',

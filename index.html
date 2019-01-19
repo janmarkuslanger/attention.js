@@ -9,7 +9,10 @@
         <script src="dist/attention.js"></script>
 
         <script>
-            new Attention.Alert('This is a Title', 'This is the content')
+            new Attention.Alert({
+                title: 'This is a Title',
+                content: 'This is the content'
+            })
         </script>
 
     </body>
