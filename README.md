@@ -84,7 +84,9 @@ content | Content | string | true |
 
 Attention offers a lot of lifecycle methods. These methods are giving the oportunity to change the behaviour of a life of a component.
 
+
 Here is a list of available methods. These methods are available in every component.
+
 
 name | description |
 ----|----------|
@@ -93,14 +95,18 @@ afterRender | fires after rendering a component |
 beforeClose | fires before closing a component |
 afterClose | fires after closing a component |
 
+
 Furthermore we have methods which are only available in some methods.
 
+
 ### Methods - Confirm
+
 
 name | description |
 -----|---------|
 onAccept | fires when user has accepted |
 onCancel | fires when user has canceled |
+
 
 ### Methods - Prompt
 
