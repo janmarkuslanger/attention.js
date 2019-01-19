@@ -16,9 +16,12 @@ export class Alert extends Component {
 
         const close = h('div', {class: 'close', click: () => {
             this.close();
-        }})
-
+        }});
         close.innerHTML = closeIcon;
+
+        this.port.appendChild(
+            close
+        );
 
         const content = h('div', {class: 'content'}, [
             h('p', null, [this.title]),
