@@ -6,7 +6,21 @@ A vanilla js library for creating stylish alerts, prompts and confirms.
  
 Install attention.js is quit easy.
 
-### 
+### npm
+
+``` npm
+$ npm install attention --save-dec
+```
+
+### script
+
+Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
+
+``` html
+test
+```
+
+
 
 ## Usage
 
