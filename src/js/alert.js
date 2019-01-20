@@ -1,45 +1,28 @@
 import { h } from './h';
 import { Component } from './component';
-import { close as closeIcon } from './constants';
 
 export class Alert extends Component {
 
     constructor(options) {
         super(options);
-        this.template = this.renderTemplate();
+        this.injectTemplate();
         this.render();
     }
 
-    renderTemplate() {
+    injectTemplate() {
 
-        const close = h('div', {class: 'close', click: () => {
-            this.close();
-        }});
-        close.innerHTML = closeIcon;
-
-        this.port = h('div', {class: 'port'});
-
-        this.port.appendChild(h('p', {class: 'title'}, [this.title]));
-        this.port.appendChild(h('p', {class: 'content'}, [this.content]));
-
-        let style;
-
-        if (this.animation === 'fade') {
-            style = 'opacity:0;';
-        } else {
-            style = '';
-        }
-
-        this.container = h('div', {class: 'attention-alert attention-component', style: style}, [
-            h('div', {class: 'inner'}, [
-                h('div', {class: 'content'}, [
-                    close,
-                    this.port
-                ])
-            ])
+        const head = h('div', {class: 'head'}, [
+            h('p', {class: 'title'}, [this.title])
         ]);
 
-        return this.container;
+        this.port.appendChild(head);
+
+        const innerContainer = h('div', {class: 'inner-container'}, [
+            h('p', {class: 'content'}, [this.content])
+        ]);
+
+        this.port.appendChild(head);
+        this.port.appendChild(innerContainer);
     }
 
 };

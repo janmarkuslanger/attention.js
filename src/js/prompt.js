@@ -19,8 +19,18 @@ export class Prompt extends Component {
 
         this.port = h('div', {class: 'port'});
 
-        this.port.appendChild(h('p', {class: 'title'}, [this.title]));
-        this.port.appendChild(h('p', {class: 'content'}, [this.content]));
+        const head = h('div', {class: 'head'}, [
+            h('p', {class: 'title'}, [this.title])
+        ]);
+
+        this.port.appendChild(head);
+
+        const innerContainer = h('div', {class: 'inner-container'}, [
+            h('p', {class: 'content'}, [this.content])
+        ]);
+
+        this.port.appendChild(head);
+        this.port.appendChild(innerContainer);
 
         let style;
 

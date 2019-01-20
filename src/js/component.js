@@ -1,5 +1,7 @@
+import { h } from './h';
 import { isString } from './is';
 import { fadeIn, fadeOut } from './animations';
+import { close as closeIcon } from './constants';
 
 export class Component {
     constructor(options) {
@@ -23,9 +25,37 @@ export class Component {
             this.animation = 'fade';
         }
 
-        this.container = null;
-
         this.port = null;
+
+        this.template = this.createBase();
+    }
+
+    createBase() {
+        const close = h('div', {class: 'close', click: () => {
+            this.close();
+        }});
+        close.innerHTML = closeIcon;
+
+        this.port = h('div', {class: 'port'});
+
+        let style;
+
+        if (this.animation === 'fade') {
+            style = 'opacity:0;';
+        } else {
+            style = '';
+        }
+
+        this.container = h('div', {class: 'attention-component', style: style}, [
+            h('div', {class: 'inner'}, [
+                h('div', {class: 'content'}, [
+                    close,
+                    this.port
+                ])
+            ])
+        ]);
+
+        return this.container;
     }
 
     render(container = document.body) {

@@ -156,6 +156,8 @@
     window.requestAnimationFrame(run);
   };
 
+  var close = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\"/><path d=\"M0 0h24v24H0z\" fill=\"none\"/></svg>"; // Thanks Google!
+
   var Component =
   /*#__PURE__*/
   function () {
@@ -182,11 +184,44 @@
         this.animation = 'fade';
       }
 
-      this.container = null;
       this.port = null;
+      this.template = this.createBase();
     }
 
     _createClass(Component, [{
+      key: "createBase",
+      value: function createBase() {
+        var _this = this;
+
+        var close$$1 = h('div', {
+          class: 'close',
+          click: function click() {
+            _this.close();
+          }
+        });
+        close$$1.innerHTML = close;
+        this.port = h('div', {
+          class: 'port'
+        });
+        var style;
+
+        if (this.animation === 'fade') {
+          style = 'opacity:0;';
+        } else {
+          style = '';
+        }
+
+        this.container = h('div', {
+          class: 'attention-component',
+          style: style
+        }, [h('div', {
+          class: 'inner'
+        }, [h('div', {
+          class: 'content'
+        }, [close$$1, this.port])])]);
+        return this.container;
+      }
+    }, {
       key: "render",
       value: function render() {
         var container = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : document.body;
@@ -216,8 +251,8 @@
       }
     }, {
       key: "close",
-      value: function close() {
-        var _this = this;
+      value: function close$$1() {
+        var _this2 = this;
 
         if (this.options.beforeClose) {
           this.options.beforeClose(this);
@@ -227,7 +262,7 @@
           this.destroy();
         } else if (this.animation === 'fade') {
           fadeOut(this.container, function () {
-            _this.destroy();
+            _this2.destroy();
           });
         }
       }
@@ -235,8 +270,6 @@
 
     return Component;
   }();
-
-  var close = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\"><path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\"/><path d=\"M0 0h24v24H0z\" fill=\"none\"/></svg>"; // Thanks Google!
 
   var Alert =
   /*#__PURE__*/
@@ -249,7 +282,8 @@
       _classCallCheck(this, Alert);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(Alert).call(this, options));
-      _this.template = _this.renderTemplate();
+
+      _this.injectTemplate();
 
       _this.render();
 
@@ -257,43 +291,21 @@
     }
 
     _createClass(Alert, [{
-      key: "renderTemplate",
-      value: function renderTemplate() {
-        var _this2 = this;
-
-        var close$$1 = h('div', {
-          class: 'close',
-          click: function click() {
-            _this2.close();
-          }
-        });
-        close$$1.innerHTML = close;
-        this.port = h('div', {
-          class: 'port'
-        });
-        this.port.appendChild(h('p', {
+      key: "injectTemplate",
+      value: function injectTemplate() {
+        var head = h('div', {
+          class: 'head'
+        }, [h('p', {
           class: 'title'
-        }, [this.title]));
-        this.port.appendChild(h('p', {
+        }, [this.title])]);
+        this.port.appendChild(head);
+        var innerContainer = h('div', {
+          class: 'inner-container'
+        }, [h('p', {
           class: 'content'
-        }, [this.content]));
-        var style;
-
-        if (this.animation === 'fade') {
-          style = 'opacity:0;';
-        } else {
-          style = '';
-        }
-
-        this.container = h('div', {
-          class: 'attention-alert attention-component',
-          style: style
-        }, [h('div', {
-          class: 'inner'
-        }, [h('div', {
-          class: 'content'
-        }, [close$$1, this.port])])]);
-        return this.container;
+        }, [this.content])]);
+        this.port.appendChild(head);
+        this.port.appendChild(innerContainer);
       }
     }]);
 
@@ -333,12 +345,19 @@
         this.port = h('div', {
           class: 'port'
         });
-        this.port.appendChild(h('p', {
+        var head = h('div', {
+          class: 'head'
+        }, [h('p', {
           class: 'title'
-        }, [this.title]));
-        this.port.appendChild(h('p', {
+        }, [this.title])]);
+        this.port.appendChild(head);
+        var innerContainer = h('div', {
+          class: 'inner-container'
+        }, [h('p', {
           class: 'content'
-        }, [this.content]));
+        }, [this.content])]);
+        this.port.appendChild(head);
+        this.port.appendChild(innerContainer);
         var style;
 
         if (this.animation === 'fade') {
