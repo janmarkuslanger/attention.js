@@ -2,6 +2,10 @@
 
 A vanilla js library for creating stylish alerts, prompts and confirms.
 
+<p>
+    <img src="https://img.shields.io/github/size/janmarkuslanger/attention.js/dist/attention.js.svg">
+</p>
+
 ---
 
 ## <a href="https://janmarkuslanger.github.io/attention.js/">Demo</a>
