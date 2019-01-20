@@ -2,27 +2,43 @@
 
 A vanilla js library for creating stylish alerts, prompts and confirms.
 
+---
+
+## <a href="https://janmarkuslanger.github.io/attention.js/">Demo</a>
+
+## Need help? 
+Create an issue or write me jan-markus@gmx.de
+
 ## Install
 
 Install attention.js is quit easy.
 
-### npm
+### Install npm
 
 ``` npm
 $ npm install attention --save-dec
 ```
 
-### script
+### Install script
 
 Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
+You also need to put the css into your project `dist/attention.css`.
 
 ``` html
-test
+<html>
+    <head>
+        <link href="dist/attention.css" rel="stylesheet">
+        </style>
+    </head>
+    <body>
+        <script src="dist/attention.js"></script>
+    </body>
+</html>
+
 ```
 
 
-
-## Usage
+## Components
 
 ### Alert
 
@@ -39,7 +55,7 @@ test
 
 ```
 
-### Confirm
+## Confirm
 
 **Confirm(config <object>)**
 
@@ -49,7 +65,13 @@ test
 
     new Confirm({
         title: 'This is a Confirm',
-        content: 'This is my content'
+        content: 'This is my content',
+        onAccept(component) {
+            console.log('Accepted');
+        },
+        onCancel(component) {
+            console.log('Canceled');
+        }
     });
 
 ```
@@ -64,7 +86,10 @@ test
 
     new Prompt({
         title: 'This is a Prompt',
-        content: 'This is my content'
+        content: 'This is my content',
+        onSubmit(component, value) {
+            console.log(`Value: ${value}`
+        }
     });
 
 ```
@@ -78,6 +103,11 @@ key | description | type | mandatory|
 ----|-----------|----|-----|
 title | Title | string | true |
 content | Content | string | true |
+buttonCancel | Text for the cancel button (confirm) | string | false |
+buttonConfirm | Text for the confirm button (confirm)| string | false |
+placeholderText | Placeholder text (prompt) | string | false
+submitText | Text for the submit button (prompt) | false | 
+
 
 
 ## Methods
@@ -104,12 +134,12 @@ Furthermore we have methods which are only available in some methods.
 
 name | description |
 -----|---------|
-onAccept | fires when user has accepted |
-onCancel | fires when user has canceled |
+onAccept(component) | fires when user has accepted |
+onCancel(component) | fires when user has canceled |
 
 
 ### Methods - Prompt
 
 name | description |
 -----|---------|
-onSend | fires when the user has entered the input |
+onSubmit(component, value) | fires when the user has entered the input |
