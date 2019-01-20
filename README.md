@@ -2,20 +2,20 @@
 
 A vanilla js library for creating stylish alerts, prompts and confirms.
 
-# Need help? 
+## Need help? 
 Create an issue or write me jan-markus@gmx.de
 
-# Install
+## Install
 
 Install attention.js is quit easy.
 
-## Install npm
+### Install npm
 
 ``` npm
 $ npm install attention --save-dec
 ```
 
-## Install script
+### Install script
 
 Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
 
@@ -24,9 +24,9 @@ test
 ```
 
 
-# Components
+## Components
 
-## Alert
+### Alert
 
 **Alert(config <object>)**
 
@@ -62,7 +62,7 @@ test
 
 ```
 
-## Prompt
+### Prompt
 
 **Prompt(config <object>)**
 
