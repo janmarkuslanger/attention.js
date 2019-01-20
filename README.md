@@ -22,9 +22,19 @@ $ npm install attention --save-dec
 ### Install script
 
 Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
+You also need to put the css into your project `dist/attention.css`.
 
 ``` html
-test
+<html>
+    <head>
+        <link href="dist/attention.css" rel="stylesheet">
+        </style>
+    </head>
+    <body>
+        <script src="dist/attention.js"></script>
+    </body>
+</html>
+
 ```
 
 
