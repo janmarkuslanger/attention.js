@@ -10,6 +10,30 @@
         html {
             font-family: 'Roboto Condensed', sans-serif;
         }
+        .intro {
+            position: relative;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .examples {
+            position: relative;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .examples .button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .examples .new-alert {
+            background-color: #143642;
+        }
+        .examples .new-prompt {
+            background-color: #EC9A29;
+        }
+        .examples .new-confirm {
+            background-color: #A8201A;
+        }
 
         </style>
     </head>
@@ -17,14 +41,50 @@
 
         <script src="dist/attention.js"></script>
 
+        <div class="intro">
+            <h1 class="title">attention.js</h1>
+            <p>Press one of the buttons to render a new component. Open the console.</p>
+        </div>
+
+        <div class="examples">
+
+            <button class="button new-alert">Alert</button>
+            <button class="button new-confirm">Confirm</button>
+            <button class="button new-prompt">Prompt</button>
+
+        </div>
+
         <script>
-            new Attention.Alert({
-                title: 'This is a title of an alert component!',
-                content: 'This is the content. This is content. This is another content of an alert.',
-                onSend(comp, val) {
-                    console.log(val)
-                }
-            })
+
+            document.querySelector('.new-alert').addEventListener('click', function() {
+                new Attention.Alert({
+                    title: 'Nice alert!',
+                    content: 'This is my content'
+                });
+            });
+
+            document.querySelector('.new-confirm').addEventListener('click', function() {
+                new Attention.Confirm({
+                    title: 'Nice confirm',
+                    content: 'This is my content',
+                    onCancel: function(component) {
+                        console.log('Canceled')
+                    },
+                    onConfirm: function(component) {
+                        console.log('Accepted')
+                    }
+                });
+            });
+
+            document.querySelector('.new-prompt').addEventListener('click', function() {
+                new Attention.Prompt({
+                    title: 'Nice prompt',
+                    content: 'This is my content',
+                    onSubmit: function(component, value) {
+                        console.log('Value: ' + value);
+                    }
+                });
+            });
         </script>
 
     </body>

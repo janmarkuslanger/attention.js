@@ -1,23 +1,38 @@
 import { h } from './h';
 import { Component } from './component';
-import { close as closeIcon } from './constants';
+import { isString } from './is';
 
 export class Prompt extends Component {
 
     constructor(options) {
         super(options);
-        this.template = this.renderTemplate();
+        this.buttonText = isString(options.buttonText) ? options.buttonText : 'Send';
+        this.placeholderText = isString(options.placeholderText) ? options.placeholderText : 'Type';
+        this.injectTemplate();
         this.render();
     }
 
-    renderTemplate() {
+    handleInput(e, el) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            this.submit();
+        }
+    }
 
-        const close = h('div', {class: 'close', click: () => {
-            this.close();
-        }});
-        close.innerHTML = closeIcon;
+    submit() {
+        const value = this.input.value;
 
-        this.port = h('div', {class: 'port'});
+        if (value === '') {
+            return;
+        }
+
+        this.close();
+
+        if (this.options.onSubmit) {
+            this.options.onSubmit(this, value);
+        }
+    }
+
+    injectTemplate() {
 
         const head = h('div', {class: 'head'}, [
             h('p', {class: 'title'}, [this.title])
@@ -25,31 +40,25 @@ export class Prompt extends Component {
 
         this.port.appendChild(head);
 
+        this.input = h('input', {type: 'text', class: 'input', placeholder: this.placeholderText, keyup: (e, el) => {
+            this.handleInput(e, el);
+        }});
+
+        const inputRow = h('div', {class: 'prompt-elements'}, [
+            this.input,
+            h('button', {class: 'button', click: () => {
+                this.submit();
+            }}, [this.buttonText])
+        ]);
+
+
         const innerContainer = h('div', {class: 'inner-container'}, [
-            h('p', {class: 'content'}, [this.content])
+            h('p', {class: 'content'}, [this.content]),
+            inputRow
         ]);
 
         this.port.appendChild(head);
         this.port.appendChild(innerContainer);
-
-        let style;
-
-        if (this.animation === 'fade') {
-            style = 'opacity:0;';
-        } else {
-            style = '';
-        }
-
-        this.container = h('div', {class: 'attention-alert attention-component', style: style}, [
-            h('div', {class: 'inner'}, [
-                h('div', {class: 'content'}, [
-                    close,
-                    this.port
-                ])
-            ])
-        ]);
-
-        return this.container;
     }
 
 };

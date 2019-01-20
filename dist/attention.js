@@ -323,7 +323,10 @@
       _classCallCheck(this, Prompt);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(Prompt).call(this, options));
-      _this.template = _this.renderTemplate();
+      _this.buttonText = isString(options.buttonText) ? options.buttonText : 'Send';
+      _this.placeholderText = isString(options.placeholderText) ? options.placeholderText : 'Type';
+
+      _this.injectTemplate();
 
       _this.render();
 
@@ -331,20 +334,93 @@
     }
 
     _createClass(Prompt, [{
-      key: "renderTemplate",
-      value: function renderTemplate() {
+      key: "handleInput",
+      value: function handleInput(e, el) {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          this.submit();
+        }
+      }
+    }, {
+      key: "submit",
+      value: function submit() {
+        var value = this.input.value;
+
+        if (value === '') {
+          return;
+        }
+
+        this.close();
+
+        if (this.options.onSubmit) {
+          this.options.onSubmit(this, value);
+        }
+      }
+    }, {
+      key: "injectTemplate",
+      value: function injectTemplate() {
         var _this2 = this;
 
-        var close$$1 = h('div', {
-          class: 'close',
-          click: function click() {
-            _this2.close();
+        var head = h('div', {
+          class: 'head'
+        }, [h('p', {
+          class: 'title'
+        }, [this.title])]);
+        this.port.appendChild(head);
+        this.input = h('input', {
+          type: 'text',
+          class: 'input',
+          placeholder: this.placeholderText,
+          keyup: function keyup(e, el) {
+            _this2.handleInput(e, el);
           }
         });
-        close$$1.innerHTML = close;
-        this.port = h('div', {
-          class: 'port'
-        });
+        var inputRow = h('div', {
+          class: 'prompt-elements'
+        }, [this.input, h('button', {
+          class: 'button',
+          click: function click() {
+            _this2.submit();
+          }
+        }, [this.buttonText])]);
+        var innerContainer = h('div', {
+          class: 'inner-container'
+        }, [h('p', {
+          class: 'content'
+        }, [this.content]), inputRow]);
+        this.port.appendChild(head);
+        this.port.appendChild(innerContainer);
+      }
+    }]);
+
+    return Prompt;
+  }(Component);
+
+  var Confirm =
+  /*#__PURE__*/
+  function (_Component) {
+    _inherits(Confirm, _Component);
+
+    function Confirm(options) {
+      var _this;
+
+      _classCallCheck(this, Confirm);
+
+      _this = _possibleConstructorReturn(this, _getPrototypeOf(Confirm).call(this, options));
+      _this.buttonCancel = isString(options.buttonCancel) ? options.buttonCancel : 'No';
+      _this.buttonConfirm = isString(options.buttonConfirm) ? options.buttonConfirm : 'Agree';
+
+      _this.injectTemplate();
+
+      _this.render();
+
+      return _this;
+    }
+
+    _createClass(Confirm, [{
+      key: "injectTemplate",
+      value: function injectTemplate() {
+        var _this2 = this;
+
         var head = h('div', {
           class: 'head'
         }, [h('p', {
@@ -356,35 +432,40 @@
         }, [h('p', {
           class: 'content'
         }, [this.content])]);
+        innerContainer.appendChild(h('div', {
+          class: 'buttons'
+        }, [h('button', {
+          class: 'cancel',
+          click: function click() {
+            _this2.close();
+
+            if (_this2.options.onCancel) {
+              _this2.options.onCancel(_this2);
+            }
+          }
+        }, [this.buttonCancel]), h('button', {
+          class: 'confirm',
+          click: function click() {
+            _this2.close();
+
+            if (_this2.options.onConfirm) {
+              _this2.options.onConfirm(_this2);
+            }
+          }
+        }, [this.buttonConfirm])]));
         this.port.appendChild(head);
         this.port.appendChild(innerContainer);
-        var style;
-
-        if (this.animation === 'fade') {
-          style = 'opacity:0;';
-        } else {
-          style = '';
-        }
-
-        this.container = h('div', {
-          class: 'attention-alert attention-component',
-          style: style
-        }, [h('div', {
-          class: 'inner'
-        }, [h('div', {
-          class: 'content'
-        }, [close$$1, this.port])])]);
-        return this.container;
       }
     }]);
 
-    return Prompt;
+    return Confirm;
   }(Component);
 
   var version = '0.1.0';
 
   exports.Alert = Alert;
   exports.Prompt = Prompt;
+  exports.Confirm = Confirm;
   exports.version = version;
 
   Object.defineProperty(exports, '__esModule', { value: true });
