@@ -20,6 +20,6 @@ export default {
         babel({
             exclude: 'node_modules/**' // only transpile our source code
         }),
-        // uglify()
+        uglify()
     ]
 };
