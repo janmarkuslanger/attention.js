@@ -6,7 +6,7 @@ export class Prompt extends Component {
 
     constructor(options) {
         super(options);
-        this.buttonText = isString(options.buttonText) ? options.buttonText : 'Send';
+        this.submitText = isString(options.submitText) ? options.submitText : 'Send';
         this.placeholderText = isString(options.placeholderText) ? options.placeholderText : 'Type';
         this.injectTemplate();
         this.render();
@@ -48,7 +48,7 @@ export class Prompt extends Component {
             this.input,
             h('button', {class: 'button', click: () => {
                 this.submit();
-            }}, [this.buttonText])
+            }}, [this.submitText])
         ]);
 
 

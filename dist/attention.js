@@ -323,7 +323,7 @@
       _classCallCheck(this, Prompt);
 
       _this = _possibleConstructorReturn(this, _getPrototypeOf(Prompt).call(this, options));
-      _this.buttonText = isString(options.buttonText) ? options.buttonText : 'Send';
+      _this.submitText = isString(options.submitText) ? options.submitText : 'Send';
       _this.placeholderText = isString(options.placeholderText) ? options.placeholderText : 'Type';
 
       _this.injectTemplate();
@@ -381,7 +381,7 @@
           click: function click() {
             _this2.submit();
           }
-        }, [this.buttonText])]);
+        }, [this.submitText])]);
         var innerContainer = h('div', {
           class: 'inner-container'
         }, [h('p', {
