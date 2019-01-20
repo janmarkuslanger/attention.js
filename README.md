@@ -13,12 +13,6 @@ Create an issue or write me jan-markus@gmx.de
 
 Install attention.js is quit easy.
 
-### Install npm
-
-``` npm
-$ npm install attention --save-dec
-```
-
 ### Install script
 
 Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
