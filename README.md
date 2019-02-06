@@ -10,7 +10,7 @@ A vanilla js library for creating stylish alerts, prompts and confirms.
 
 ## <a href="https://janmarkuslanger.github.io/attention.js/">Demo</a>
 
-## Need help? 
+## Need help?
 Create an issue or write me jan-markus@gmx.de
 
 ## Install
@@ -110,7 +110,7 @@ submitText | Text for the submit button (prompt) | false | 
 
 ## Methods
 
-Attention offers a lot of lifecycle methods. These methods are giving the oportunity to change the behaviour of a life of a component.
+Attention offers a lot of lifecycle methods. These methods are giving the opportunity to change the behaviour of a life of a component.
 
 
 Here is a list of available methods. These methods are available in every component.
