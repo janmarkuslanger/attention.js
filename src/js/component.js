@@ -79,7 +79,7 @@ export class Component {
         this.container.parentElement.removeChild(this.container);
 
         if (this.options.afterClose) {
-            this.options.beforeClose(this);
+            this.options.afterClose(this);
         }
     }
 

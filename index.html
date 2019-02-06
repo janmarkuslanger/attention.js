@@ -44,6 +44,7 @@
         <div class="intro">
             <h1 class="title">attention.js</h1>
             <p>Press one of the buttons to render a new component. Open the console.</p>
+            <div class="demo"></div>
         </div>
 
         <div class="examples">
@@ -59,7 +60,10 @@
             document.querySelector('.new-alert').addEventListener('click', function() {
                 new Attention.Alert({
                     title: 'Nice alert!',
-                    content: 'This is my content'
+                    content: 'This is my content',
+                    afterClose: () => {
+                        alert('sdfsdf');
+                    }
                 });
             });
 
