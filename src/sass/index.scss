@@ -21,6 +21,7 @@
 }
 .attention-component .inner-container {
     padding: 20px;
+    background-color: #fff;
 }
 .attention-component .head {
     padding: 10px 40px 10px 20px;
@@ -32,6 +33,7 @@
     right: 10px;
     display: inline-block;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .attention-component .close path:first-child {
     fill: #fff;
