@@ -108,7 +108,7 @@ submitText | Text for the submit button (prompt) | false | 
 
 
 
-## Methods
+## Callbacks
 
 Attention offers a lot of lifecycle methods. These methods are giving the opportunity to change the behaviour of a life of a component.
 
