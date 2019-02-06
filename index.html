@@ -43,8 +43,12 @@
 
         <div class="intro">
             <h1 class="title">attention.js</h1>
-            <p>Press one of the buttons to render a new component. Open the console.</p>
-            <div class="demo"></div>
+            <p>Press one of the buttons to render a new component. Try it!</p>
+            <div class="demo">
+
+                <h2>Actions:</h2>
+
+            </div>
         </div>
 
         <div class="examples">
@@ -57,12 +61,14 @@
 
         <script>
 
+            const demo = document.querySelector('.demo');
+
             document.querySelector('.new-alert').addEventListener('click', function() {
                 new Attention.Alert({
                     title: 'Nice alert!',
                     content: 'This is my content',
                     afterClose: () => {
-                        alert('sdfsdf');
+                        demo.innerHTML += '<h4>Alert was closed</h4>';
                     }
                 });
             });
@@ -72,10 +78,10 @@
                     title: 'Nice confirm',
                     content: 'This is my content',
                     onCancel: function(component) {
-                        console.log('Canceled')
+                        demo.innerHTML += '<h4>Confirm was canceled</h4>';
                     },
                     onConfirm: function(component) {
-                        console.log('Accepted')
+                        demo.innerHTML += '<h4>Confirm was accepted</h4>';
                     }
                 });
             });
@@ -85,7 +91,7 @@
                     title: 'Nice prompt',
                     content: 'This is my content',
                     onSubmit: function(component, value) {
-                        console.log('Value: ' + value);
+                        demo.innerHTML += `<h4>Prompt was submited by following value: ${value}</h4>`;
                     }
                 });
             });
