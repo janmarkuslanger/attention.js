@@ -127,7 +127,7 @@ afterClose | fires after closing a component |
 Furthermore we have methods which are only available in some methods.
 
 
-### Methods - Confirm
+### Callbacks - Confirm
 
 
 name | description |
@@ -136,7 +136,7 @@ onAccept(component) | fires when user has accepted |
 onCancel(component) | fires when user has canceled |
 
 
-### Methods - Prompt
+### Callbacks - Prompt
 
 name | description |
 -----|---------|
