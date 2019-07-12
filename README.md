@@ -51,7 +51,7 @@ You also need to put the css into your project `dist/attention.css`.
 
 ```
 
-## Confirm
+### Confirm
 
 ``` javascript
 
