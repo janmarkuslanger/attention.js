@@ -40,7 +40,7 @@ You also need to put the css into your project `dist/attention.css`.
 
 ### Alert
 
-**Alert(config <object>)**
+** Alert(config <object>) **
 
 ``` javascript
 
@@ -55,7 +55,7 @@ You also need to put the css into your project `dist/attention.css`.
 
 ## Confirm
 
-**Confirm(config <object>)**
+** Confirm(config <object>) **
 
 ``` javascript
 
