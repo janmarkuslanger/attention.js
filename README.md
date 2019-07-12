@@ -40,8 +40,6 @@ You also need to put the css into your project `dist/attention.css`.
 
 ### Alert
 
-** Alert(config <object>) **
-
 ``` javascript
 
     import { Alert } from 'attention';
@@ -54,8 +52,6 @@ You also need to put the css into your project `dist/attention.css`.
 ```
 
 ## Confirm
-
-**Confirm(config *object*)**
 
 ``` javascript
 
@@ -75,8 +71,6 @@ You also need to put the css into your project `dist/attention.css`.
 ```
 
 ### Prompt
-
-**Prompt(config <object>)**
 
 ``` javascript
 
