@@ -1,5 +1,4 @@
 export const fadeIn = (element, callback) => {
-
     let counter = 0;
     const step = 4;
 
@@ -23,7 +22,6 @@ export const fadeIn = (element, callback) => {
 };
 
 export const fadeOut = (element, callback) => {
-
     let counter = 100;
     const step = 4;
 
@@ -34,6 +32,7 @@ export const fadeOut = (element, callback) => {
             if (callback) {
                 callback(element);
             }
+            
         } else {
 
             counter -= step;
