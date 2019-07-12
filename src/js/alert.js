@@ -10,7 +10,6 @@ export class Alert extends Component {
     }
 
     injectTemplate() {
-
         const head = h('div', {class: 'head'}, [
             h('p', {class: 'title'}, [this.title])
         ]);
