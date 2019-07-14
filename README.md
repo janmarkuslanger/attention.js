@@ -1,6 +1,6 @@
 # attention.js
 
-A vanilla js library for creating stylish alerts, prompts and confirms.
+A vanilla js library for creating alerts, prompts and confirms.
 
 <p>
     <img src="https://img.shields.io/github/size/janmarkuslanger/attention.js/dist/attention.js.svg">
