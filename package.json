@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/janmarkuslanger/attention.js#readme",
   "devDependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/preset-env": "^7.5.4",
-    "rollup": "^1.16.7",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-node-resolve": "^4.2.4",
-    "rollup-plugin-uglify": "^6.0.2"
+    "rollup-plugin-uglify": "^6.0.3"
   },
   "dependencies": {
     "node-sass": "^4.12.0"
