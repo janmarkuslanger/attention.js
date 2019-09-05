@@ -20,9 +20,21 @@ export class Confirm extends Component {
 
         this.port.appendChild(head);
 
-        const innerContainer = h('div', {class: 'inner-container'}, [
-            h('p', {class: 'content'}, [this.content])
-        ]);
+        let innerContainer;
+
+        if (this.useInnerHTML) {
+          const content = h('div', {class: 'content'});
+          content.innerHTML = this.content;
+
+          innerContainer = h('div', {class: 'inner-container'}, [
+            content
+          ]);
+
+        } else {
+          innerContainer = h('div', {class: 'inner-container'}, [
+              h('p', {class: 'content'}, [this.content])
+          ]);
+        }
 
         innerContainer.appendChild(
             h('div', {class: 'buttons'}, [

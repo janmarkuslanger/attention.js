@@ -76,13 +76,8 @@
             document.querySelector('.new-confirm').addEventListener('click', function() {
                 new Attention.Confirm({
                     title: 'Nice confirm',
-                    content: 'This is my content',
-                    onCancel: function(component) {
-                        demo.innerHTML += '<h4>Confirm was canceled</h4>';
-                    },
-                    onConfirm: function(component) {
-                        demo.innerHTML += '<h4>Confirm was accepted</h4>';
-                    }
+                    content: '<h1>This is my content</h1>',
+                    useInnerHTML: true
                 });
             });
 

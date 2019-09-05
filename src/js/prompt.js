@@ -51,11 +51,23 @@ export class Prompt extends Component {
             }}, [this.submitText])
         ]);
 
+        let innerContainer;
 
-        const innerContainer = h('div', {class: 'inner-container'}, [
-            h('p', {class: 'content'}, [this.content]),
+        if (this.useInnerHTML) {
+          const content = h('div', {class: 'content'});
+          content.innerHTML = this.content;
+
+          innerContainer = h('div', {class: 'inner-container'}, [
+            content,
             inputRow
-        ]);
+          ]);
+
+        } else {
+          innerContainer = h('div', {class: 'inner-container'}, [
+              h('p', {class: 'content'}, [this.content]),
+              inputRow
+          ]);
+        }
 
         this.port.appendChild(head);
         this.port.appendChild(innerContainer);

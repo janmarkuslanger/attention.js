@@ -15,6 +15,8 @@ export class Component {
             this.title = options.title;
         }
 
+        this.useInnerHTML =  (options.useInnerHTML === true);
+
         if (isString(options.content)){
             this.content = options.content;
         }
