@@ -1,5 +1,7 @@
 # attention.js
 
+> This library will be released soon as 1.0 with a whole new codebase! Stay tuned!
+
 A vanilla js library for creating alerts, prompts and confirms.
 
 <p>
