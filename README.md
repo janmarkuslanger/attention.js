@@ -2,7 +2,7 @@
 
 > This library will be released soon as 1.0 with a whole new codebase! Stay tuned!
 
-A vanilla js library for creating alerts, prompts and confirms.
+A vanilla js library for creating alerts, prompts, and confirms.
 
 <p>
     <img src="https://img.shields.io/github/size/janmarkuslanger/attention.js/dist/attention.js.svg">
@@ -17,12 +17,12 @@ Create an issue or write me jan-markus@gmx.de
 
 ## Install
 
-Install attention.js is quit easy.
+Install attention.js is quite easy.
 
 ### Install script
 
 Just include the script `dist/attention.js` into your project and put the script before the closing body tag.
-You also need to put the css into your project `dist/attention.css`.
+You also need to put the CSS into your project `dist/attention.css`.
 
 ``` html
 <html>
@@ -90,7 +90,7 @@ You also need to put the css into your project `dist/attention.css`.
 
 ## Config / Option
 
-When creating a new Object of an Alert, Prompt or Confirm, it is needed to pass an object.
+When creating a new Object of an Alert, Prompt, or Confirm, it is needed to pass an object.
 This object has a few options that you can change.
 
 key | description | type | mandatory|
@@ -106,7 +106,7 @@ submitText | Text for the submit button (prompt) | false | 
 
 ## Callbacks
 
-Attention offers a lot of lifecycle methods. These methods are giving the opportunity to change the behaviour of a life of a component.
+Attention offers a lot of lifecycle methods. These methods are allowing changing the behavior of the life of a component.
 
 
 Here is a list of available methods. These methods are available in every component.
@@ -120,7 +120,7 @@ beforeClose | fires before closing a component |
 afterClose | fires after closing a component |
 
 
-Furthermore we have methods which are only available in some methods.
+Furthermore, we have methods which are only available in some methods.
 
 
 ### Callbacks - Confirm
@@ -128,8 +128,8 @@ Furthermore we have methods which are only available in some methods.
 
 name | description |
 -----|---------|
-onAccept(component) | fires when user has accepted |
-onCancel(component) | fires when user has canceled |
+onAccept(component) | fires when a user has accepted |
+onCancel(component) | fires when a user has canceled |
 
 
 ### Callbacks - Prompt
