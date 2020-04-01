@@ -137,3 +137,18 @@ onCancel(component) | fires when a user has canceled |
 name | description |
 -----|---------|
 onSubmit(component, value) | fires when the user has entered the input |
+
+## Questions
+For questions and support feel free to create an issue or write an email to
+janmarkuslanger10121994@gmail.com
+
+## Issues
+If you found a bug, then please create an issue. It will help me a lot to make my work better. :)
+
+## Contribution
+Pull requests are always welcome. I am always happy to see others working on
+my GitHub projects.
+
+## Get in touch
+Write an email to janmarkuslanger10121994@gmail.com :)
+
