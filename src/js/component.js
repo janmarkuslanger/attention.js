@@ -7,10 +7,6 @@ export class Component {
     constructor(options) {
         this.options = options;
 
-        if (!options.title || !options.content) {
-            return;
-        }
-
         if (isString(options.title)) {
             this.title = options.title;
         }
