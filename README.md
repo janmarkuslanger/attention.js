@@ -62,7 +62,7 @@ You also need to put the CSS into your project `dist/attention.css`.
     new Confirm({
         title: 'This is a Confirm',
         content: 'This is my content',
-        onAccept(component) {
+        onConfirm(component) {
             console.log('Accepted');
         },
         onCancel(component) {
